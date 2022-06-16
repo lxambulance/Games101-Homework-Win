@@ -64,3 +64,7 @@ bump结果保存在output-bump.png中，displacement结果保存在output-displa
 bump mapping计算推导看不懂（据说光追部分会有详细推导），大致意思是先通过贴图计算贴图空间的法向量，然后通过TBN矩阵转化到世界坐标系下。
 
 其他框架不容易理解的地方在作业讨论区里有[详细解答](https://games-cn.org/forums/topic/frequently-asked-questionskeep-updating/)。
+
+### myanswer4
+
+同时开启naive_bezier和recursive_bezier，将产生黄色曲线，结果保存在my_bezier_curve.png中。
