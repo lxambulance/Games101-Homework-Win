@@ -9,11 +9,11 @@
 
 ## 个人
 
-首先感谢前人整理，该作业对理解games101课程帮助很大。
+首先感谢前人整理，该作业对理解games101课程帮助很大。另外添加了最终大作业pdf，包含许多有趣的研究方向。
 
 个人结果放在对应myanswer文件夹中，仅供参考。
 
-macOS下，opencv需要重新安装（推荐直接brew install安装），cmake中设置find package即可，eigen3不需要修改（也可以重新安装，不过需要在cmakelist中修改include路径为安装位置）。
+> macOS下，opencv需要重新安装（推荐直接brew install安装），cmake中设置find package即可，eigen3不需要修改（也可以重新安装，不过需要在cmakelist中修改include路径为安装位置）。
 
 ### myanswer1
 
@@ -37,11 +37,11 @@ output-MSAA.png为抗锯齿之后的结果
 
 法向量结果保存在output-normal.png中。
 
-PS：~~不是很能理解`normal_fragment_shader`的意义，~~最后的结果看起来是将法向量XYZ三个值直接映射到RGB三色上，导致x轴越大越红，y轴越大越绿，z轴越大越蓝（似乎可以理解为三个坐标轴正方向上有一盏对应颜色的灯向坐标轴负方向照射）。
+PS：~~不是很能理解`normal_fragment_shader`的意义~~ 最后的结果看起来是将法向量XYZ三个值直接映射到RGB三色上，导致x轴越大越红，y轴越大越绿，z轴越大越蓝（似乎可以理解为三个坐标轴正方向上有一盏对应颜色的灯向坐标轴负方向照射）。
 
 Blinn-Phong结果保存在output-phong.png中
 
-PS：specular light计算时使用半程向量~~，所以为什么还需要max函数？~~（看起来算法非常的暴力，照不到的面也直接丢到公式里计算结果）
+PS：specular light计算时使用半程向量。 ~~所以为什么还需要max函数？~~ （看起来算法非常的暴力，照不到的面也直接丢到公式里计算结果）
 
 Texture结果保存在output-texture.png中
 
@@ -68,3 +68,12 @@ bump mapping计算推导看不懂（据说光追部分会有详细推导），�
 ### myanswer4
 
 同时开启naive_bezier和recursive_bezier，将产生黄色曲线，结果保存在my_bezier_curve.png中。
+
+### myanswer5
+
+结果保存在binary.ppm中，另外MT算法的推导略有点复杂，直接抄了公式。具体推导可以参考[这里](https://www.scratchapixel.com/lessons/3d-basic-rendering/ray-tracing-rendering-a-triangle/moller-trumbore-ray-triangle-intersection)
+
+#### 坑
+
+1. 运行时报错。Renderer.cpp最后保存颜色的数组是unsigned char而中间结果使用char。
+2. 地面是黑的。光线与三角形求交没有加判断t>0。（讨论区发现一样的错误，真神奇！）
