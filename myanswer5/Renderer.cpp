@@ -241,11 +241,11 @@ void Renderer::Render(const Scene& scene) {
     Vector3f eye_pos(0);
     int m = 0;
     for (int j = 0; j < scene.height; ++j) {
-        float y = (0.5f - (j + 0.5f) / scene.height) * scale;
+        float y = (1 - 2 * (j + 0.5f) / scene.height) * scale;
         for (int i = 0; i < scene.width; ++i) {
             // generate primary ray direction
             float x =
-                ((i + 0.5f) / scene.width - 0.5f) * scale * imageAspectRatio;
+                (2 * (i + 0.5f) / scene.width - 1) * scale * imageAspectRatio;
             // TODO: Find the x and y positions of the current pixel to get the
             // direction vector that passes through it. Also, don't forget to
             // multiply both of them with the variable *scale*, and x
