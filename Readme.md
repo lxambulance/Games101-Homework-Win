@@ -125,3 +125,32 @@ SAH算法实现有点小麻烦，有时间在实现，占坑。
 1. 框架里存在两个BVH结构，一个统管所有场景中的物体（多面体模型只算一个物体），另一个就是模型。这里模型meshTriangle中也构建了一个BVH来快速判断交集，与个人naive的想法不同~~不要愚蠢的以为模型里的intersect调用死循环了~~。
 2. 为什么bound3.intersectP需要dirIsNeg？因为bounding box的边界是按照坐标轴方向的，需要转成dir方向。
 3. BVH中recursiveBuild里存在一个无用的bound？做SAH计算时需要使用。
+
+### myanswer7
+
+函数功能注释说明
+
+```c++
+// in Scene.cpp。求场景与射线的交点。
+Intersection intersect(const Ray& ray);
+// in Scene.cpp。随机选择一个光源并对光源采样
+void sampleLight(Intersection& pos, float& pdf);
+// in Scene.cpp
+RussianRoulette
+// in Material.hpp。对于漫反射材质：在半球面上以某种分布采样一个方向
+Vector3f sample(const Vector3f wi, const Vector3f N)
+// in Material.cpp。对于漫反射材质：概率密度为1/2pi
+float pdf(const Vector3f wi, const Vector3f wo, const Vector3f N)
+// in Material.cpp。对于漫反射材质：f_r为Kd/pi
+Vector3f eval(const Vector3f wi, const Vector3f wo, const Vector3f N)
+```
+
+只完成了最基础的path tracing，且没有多线程，结果保存在binary-spp=16.ppm。
+
+#### 7坑
+
+1. get_random_float变量前加static
+2. 看起来trace函数没有完全配套实现，scene里光源就没有特殊存储，所以打到光源还要特殊判断。
+3. tExit tEnter存在精度问题，并且需要判断相等，这在之前不用考虑。
+4. 直接击中光源的线返回光源材质采样。
+5. 判断是否与光源相交可以调用Scene::intersect函数后通过Intersection.obj->hasEmit判断（不太清楚为啥有些解法用距离去判断）。
