@@ -17,7 +17,7 @@
 
 ### myanswer1
 
-支持三角形绕任意轴旋转，可以通过以下命令指定旋转轴，然后同样通过`A`，`D`按键旋转。
+支持三角形绕任意轴旋转，可以通过以下命令指定旋转轴，然后同样通过 `A`，`D`按键旋转。
 
 ```shell
 ./Rasterizer -a 0 1 -1
@@ -37,7 +37,7 @@ output-MSAA.png为抗锯齿之后的结果
 
 法向量结果保存在output-normal.png中。
 
-PS：~~不是很能理解`normal_fragment_shader`的意义~~ 最后的结果看起来是将法向量XYZ三个值直接映射到RGB三色上，导致x轴越大越红，y轴越大越绿，z轴越大越蓝（似乎可以理解为三个坐标轴正方向上有一盏对应颜色的灯向坐标轴负方向照射）。
+PS：~~不是很能理解 `normal_fragment_shader`的意义~~ 最后的结果看起来是将法向量XYZ三个值直接映射到RGB三色上，导致x轴越大越红，y轴越大越绿，z轴越大越蓝（似乎可以理解为三个坐标轴正方向上有一盏对应颜色的灯向坐标轴负方向照射）。
 
 Blinn-Phong结果保存在output-phong.png中
 
@@ -154,3 +154,9 @@ Vector3f eval(const Vector3f wi, const Vector3f wo, const Vector3f N)
 3. tExit tEnter存在精度问题，并且需要判断相等，这在之前不用考虑。
 4. 直接击中光源的线返回光源材质采样。
 5. 判断是否与光源相交可以调用Scene::intersect函数后通过Intersection.obj->hasEmit判断（不太清楚为啥有些解法用距离去判断）。
+
+### myanswer8
+
+库安装搞不定，返回linux安装了opengl完成编译。
+
+finish task1-4
